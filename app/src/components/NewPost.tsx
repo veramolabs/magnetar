@@ -48,7 +48,7 @@ const NewPost: React.FC<Props> = (props: Props) => {
     setProgress(20);
     try {
       const profile = await agent?.getProfile({ did: selectedDid });
-      const credentialId = "https://pulsar.veramo.io/posts/" + shortId();
+      const credentialId = "https://magnetar.veramo.io/posts/" + shortId();
 
       const verifiableCredential = await agent?.createVerifiableCredential({
         credential: {
@@ -81,14 +81,14 @@ const NewPost: React.FC<Props> = (props: Props) => {
         await agent?.sendMessageDIDCommAlpha1({
           data: {
             from: selectedDid,
-            to: "did:web:pulsar.veramo.io",
+            to: "did:web:magnetar.veramo.io",
             body: verifiableCredential.proof.jwt,
             type: "jwt",
           },
         });
 
         notification.success({
-          message: "Message sent to: did:web:pulsar.veramo.io",
+          message: "Message sent to: did:web:magnetar.veramo.io",
         });
       } catch (e) {
         notification.error({

@@ -18,7 +18,7 @@ export function createClientAgent() {
     plugins: [
       new ProfileManager(),
       new AgentRestClient({
-        url: 'https://pulsar.veramo.io/public-agent',
+        url: 'https://magnetar.veramo.io/public-agent',
         enabledMethods: [
           'resolveDid',
           'dataStoreGetMessage',

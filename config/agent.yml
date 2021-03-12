@@ -138,7 +138,7 @@ server:
         $args:
           - basePath: /agent
             securityScheme: bearer
-            apiName: Pulsar Admin
+            apiName: Magnetar Admin
             apiVersion: '1.0.0'
             exposedMethods:
               $ref: /constants/methods
@@ -168,7 +168,7 @@ server:
       - $require: '@veramo/remote-server?t=function#ApiSchemaRouter'
         $args:
           - basePath: /public-agent
-            apiName: Pulsar
+            apiName: Magnetar
             apiVersion: '1.0.0'
             exposedMethods:
               $ref: /constants/publicMethods

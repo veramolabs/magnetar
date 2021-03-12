@@ -35,9 +35,12 @@ export const MessagingRouter = (options: MessagingRouterOptions): Router => {
         save: true,
       })
 
-      if (message) {
+      const didMethod = message?.from?.split(':')[1]
+      if (message && didMethod === 'nft') {
         console.log('Received message', message.type, message.id)
         res.json({ id: message.id })
+      } else {
+        throw Error('Invalid did method: ' + didMethod)
       }
     } catch (e) {
       console.log(e)

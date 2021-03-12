@@ -41,7 +41,7 @@ export const MessagingRouter = (options: MessagingRouterOptions): Router => {
       }
     } catch (e) {
       console.log(e)
-      res.send(e.message)
+      res.status(404).send(e.message)
     }
   })
 

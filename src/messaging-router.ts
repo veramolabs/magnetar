@@ -1,8 +1,8 @@
-import { IAgent, IMessageHandler, TAgent } from '@veramo/core'
+import { IAgent, IMessageHandler, TAgent, IDataStore } from '@veramo/core'
 import { text, Request, Router } from 'express'
 
 interface RequestWithMessageHandler extends Request {
-  agent?: TAgent<IMessageHandler>
+  agent?: TAgent<IMessageHandler & IDataStore>
 }
 
 /**
@@ -32,12 +32,13 @@ export const MessagingRouter = (options: MessagingRouterOptions): Router => {
       const message = await req.agent?.handleMessage({
         raw: (req.body as any) as string,
         metaData: [options.metaData],
-        save: true,
+        save: false,
       })
 
       const didMethod = message?.from?.split(':')[1]
       if (message && didMethod === 'nft') {
         console.log('Received message', message.type, message.id)
+        await req.agent?.dataStoreSaveMessage({ message })
         res.json({ id: message.id })
       } else {
         throw Error('Invalid did method: ' + didMethod)

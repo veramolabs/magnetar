@@ -106,7 +106,7 @@ server:
 
     # Messaging endpoint
     - - /messaging
-      - $require: '@veramo/remote-server?t=function#MessagingRouter'
+      - $require: './build/messaging-router?t=function#MessagingRouter'
         $args:
           - metaData:
               type: DIDComm
